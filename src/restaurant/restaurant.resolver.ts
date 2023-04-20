@@ -3,6 +3,7 @@ import { RestaurantService } from './restaurant.service';
 import {
   CreateRestaurantInput,
   UpdateRestaurantInput,
+  QueryNearbyRestaurantInput,
 } from 'src/types/graphql';
 
 @Resolver('Restaurant')
@@ -22,7 +23,7 @@ export class RestaurantResolver {
   }
 
   @Query('restaurant')
-  findOne(@Args('id') id: number) {
+  findOne(@Args('id') id: string) {
     return this.restaurantService.findOne(id);
   }
 
@@ -37,7 +38,7 @@ export class RestaurantResolver {
   }
 
   @Mutation('removeRestaurant')
-  remove(@Args('id') id: number) {
+  remove(@Args('id') id: string) {
     return this.restaurantService.remove(id);
   }
 }

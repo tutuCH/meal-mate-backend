@@ -8,6 +8,7 @@ import { AppService } from './app.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { RestaurantModule } from './restaurant/restaurant.module';
 import { ApolloServerPlugin } from '@apollo/server';
+import { GooglePlaceApiModule } from './google-place-api/google-place-api.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { ApolloServerPlugin } from '@apollo/server';
     }),
     PrismaModule,
     RestaurantModule,
+    GooglePlaceApiModule,
   ],
   controllers: [AppController],
   providers: [AppService],

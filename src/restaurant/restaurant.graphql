@@ -1,24 +1,41 @@
-type Restaurant {
-  id: Int!
+interface Restaurant {
+  id: String!
   name: String!
+  latitude: Float!
+  longitude: Float!
+  address: String
+  phone: String
 }
 
 input CreateRestaurantInput {
   name: String!
+  latitude: Float!
+  longitude: Float!
+  address: String
+  phone: String
 }
 
 input UpdateRestaurantInput {
-  id: Int!
+  id: String!
   name: String!
+  latitude: Float!
+  longitude: Float!
+  address: String
+  phone: String
+}
+
+input QueryNearbyRestaurantInput {
+  latitude: Float!
+  longitude: Float!
 }
 
 type Query {
   restaurants: [Restaurant]!
-  restaurant(id: Int!): Restaurant
+  restaurant(id: String!): Restaurant
 }
 
 type Mutation {
   createRestaurant(createRestaurantInput: CreateRestaurantInput!): Restaurant!
   updateRestaurant(updateRestaurantInput: UpdateRestaurantInput!): Restaurant!
-  removeRestaurant(id: Int!): Restaurant
+  removeRestaurant(id: String!): Restaurant
 }

@@ -9,9 +9,15 @@ import {
 export class RestaurantService {
   constructor(private prisma: PrismaService) {}
 
-  create({ name }: CreateRestaurantInput) {
+  create({ name, latitude, longitude, address, phone }: CreateRestaurantInput) {
     return this.prisma.restaurant.create({
-      data: { name },
+      data: {
+        name,
+        latitude,
+        longitude,
+        address,
+        phone,
+      },
     });
   }
 
@@ -19,14 +25,21 @@ export class RestaurantService {
     return this.prisma.restaurant.findMany();
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return this.prisma.restaurant.findUnique({
-      select: { name: true, id: true },
+      select: {
+        name: true,
+        id: true,
+        phone: true,
+        latitude: true,
+        longitude: true,
+        address: true,
+      },
       where: { id },
     });
   }
 
-  update(id: number, { name }: UpdateRestaurantInput) {
+  update(id: string, { name }: UpdateRestaurantInput) {
     return this.prisma.restaurant.update({
       where: { id },
       data: {
@@ -35,7 +48,7 @@ export class RestaurantService {
     });
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return this.prisma.restaurant.delete({
       where: { id },
     });

@@ -1,0 +1,8 @@
+type Coordinates {
+  latitude: Float
+  longitude: Float
+}
+
+type Query {
+  nearbyRestaurants(latitude: Float!, longitude: Float!): String
+}
