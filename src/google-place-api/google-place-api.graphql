@@ -3,6 +3,57 @@ type Coordinates {
   longitude: Float
 }
 
+type GoogleMapApiResponse {
+  business_status: String
+  geometry: Geometry
+  icon: String
+  icon_background_color: String
+  icon_mask_base_uri: String
+  name: String
+  opening_hours: OpeningHours
+  photos: [Photo]
+  place_id: String
+  plus_code: PlusCode
+  price_level: Int
+  rating: Float
+  reference: String
+  scope: String
+  types: [String]
+  user_ratings_total: Int
+  vicinity: String
+}
+
+type Geometry {
+  location: Location
+  viewport: Viewport
+}
+
+type Location {
+  lat: Float
+  lng: Float
+}
+
+type Viewport {
+  northeast: Location
+  southwest: Location
+}
+
+type OpeningHours {
+  open_now: Boolean
+}
+
+type Photo {
+  height: Int
+  html_attributions: [String]
+  photo_reference: String
+  width: Int
+}
+
+type PlusCode {
+  compound_code: String
+  global_code: String
+}
+
 type Query {
-  nearbyRestaurants(latitude: Float!, longitude: Float!): String
+  nearbyRestaurants(latitude: Float!, longitude: Float!): [GoogleMapApiResponse]
 }

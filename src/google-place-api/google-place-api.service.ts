@@ -504,13 +504,21 @@ export class GooglePlaceApiService {
     },
   ];
   async getNearbyRestaurants(latitude: number, longitude: number) {
-    // ========= comment to save api call in development =========
+    // document: https://developers.google.com/maps/documentation/places/web-service/search-nearby
 
-    // const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=500&type=restaurant&key=${process.env.GOOGLE_MAP_API_KEY}`;
-    // const response = await lastValueFrom(this.httpService.get(url));
-    const data = this.googleApiResponse;
+    // ========= comment to save api call in development =========
+    const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=500&type=restaurant&key=${process.env.GOOGLE_MAP_API_KEY}`;
+    const response = await lastValueFrom(this.httpService.get(url));
+    // const data = this.googleApiResponse;
     // create restaurant if doesn't exist in database
 
-    return JSON.stringify(data);
+    // if prisma find one in restaurant
+    // query database
+    // prisma create restaurant
+    if (response.status === 200) {
+      return response.data.results;
+    } else {
+      return `GOOGLE_API_ERROR`;
+    }
   }
 }
