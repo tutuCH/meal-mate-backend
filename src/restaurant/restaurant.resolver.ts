@@ -1,21 +1,10 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { RestaurantService } from './restaurant.service';
-import {
-  CreateRestaurantInput,
-  UpdateRestaurantInput,
-  QueryNearbyRestaurantInput,
-} from 'src/types/graphql';
+import { UpdateRestaurantInput } from 'src/types/graphql';
 
 @Resolver('Restaurant')
 export class RestaurantResolver {
   constructor(private readonly restaurantService: RestaurantService) {}
-
-  @Mutation('createRestaurant')
-  create(
-    @Args('createRestaurantInput') createRestaurantInput: CreateRestaurantInput,
-  ) {
-    return this.restaurantService.create(createRestaurantInput);
-  }
 
   @Query('restaurants')
   findAll() {
@@ -25,6 +14,11 @@ export class RestaurantResolver {
   @Query('restaurant')
   findOne(@Args('id') id: string) {
     return this.restaurantService.findOne(id);
+  }
+
+  @Mutation('recreateRestaurant')
+  recreate() {
+    return this.restaurantService.recreate();
   }
 
   @Mutation('updateRestaurant')

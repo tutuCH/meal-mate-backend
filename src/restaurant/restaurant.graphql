@@ -1,10 +1,14 @@
 interface Restaurant {
   id: String!
+  category: String!
   name: String!
   latitude: Float!
   longitude: Float!
   address: String
   phone: String
+  price_range: String
+  website: String
+  yelp_url: String
 }
 
 input CreateRestaurantInput {
@@ -35,7 +39,7 @@ type Query {
 }
 
 type Mutation {
-  createRestaurant(createRestaurantInput: CreateRestaurantInput!): Restaurant!
+  recreateRestaurant: Restaurant
   updateRestaurant(updateRestaurantInput: UpdateRestaurantInput!): Restaurant!
   removeRestaurant(id: String!): Restaurant
 }

@@ -510,11 +510,6 @@ export class GooglePlaceApiService {
     const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=500&type=restaurant&key=${process.env.GOOGLE_MAP_API_KEY}`;
     const response = await lastValueFrom(this.httpService.get(url));
     // const data = this.googleApiResponse;
-    // create restaurant if doesn't exist in database
-
-    // if prisma find one in restaurant
-    // query database
-    // prisma create restaurant
     if (response.status === 200) {
       return response.data.results;
     } else {

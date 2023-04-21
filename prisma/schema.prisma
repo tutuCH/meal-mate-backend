@@ -11,10 +11,14 @@ datasource db {
 }
 
 model Restaurant {
-  id        String @id @default(uuid())
-  name      String
-  latitude  Float
-  longitude Float
-  address   String
-  phone     String
+  id          String @id @default(uuid())
+  category    String
+  name        String
+  latitude    String
+  longitude   String
+  address     String
+  phone       String
+  price_range String
+  website     String
+  yelp_url    String
 }

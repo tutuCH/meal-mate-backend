@@ -32,11 +32,15 @@ export class QueryNearbyRestaurantInput {
 
 export interface Restaurant {
     id: string;
+    category: string;
     name: string;
     latitude: number;
     longitude: number;
     address?: Nullable<string>;
     phone?: Nullable<string>;
+    price_range?: Nullable<string>;
+    website?: Nullable<string>;
+    yelp_url?: Nullable<string>;
 }
 
 export class Coordinates {
@@ -104,7 +108,7 @@ export abstract class IQuery {
 }
 
 export abstract class IMutation {
-    abstract createRestaurant(createRestaurantInput: CreateRestaurantInput): Restaurant | Promise<Restaurant>;
+    abstract recreateRestaurant(): Nullable<Restaurant> | Promise<Nullable<Restaurant>>;
 
     abstract updateRestaurant(updateRestaurantInput: UpdateRestaurantInput): Restaurant | Promise<Restaurant>;
 
